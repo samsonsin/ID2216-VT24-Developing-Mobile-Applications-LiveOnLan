@@ -1,0 +1,58 @@
+export const templateStruct = [
+	{
+		id: 2310,
+		name: "Samson's Desktop",
+		mac: "00:00:00:00:00:00",
+		port: "0",
+		SecureOn: "password",
+	},
+	{
+		id: 2312,
+		name: "Plex Server",
+		mac: "00:00:00:00:00:01",
+		port: "0",
+		SecureOn: "password1",
+	},
+	{
+		id: 2313,
+		name: "Minecraft Server",
+		mac: "00:00:00:00:00:01",
+		port: "0",
+		SecureOn: "password1",
+	},
+	{
+		id: 2314,
+		name: "Ark Server",
+		mac: "00:00:00:00:00:01",
+		port: "0",
+		SecureOn: "password1",
+	},
+	{
+		id: 2315,
+		name: "Emelie's Laptop",
+		mac: "00:00:00:00:00:01",
+		port: "0",
+		SecureOn: "password1",
+	},
+	{
+		id: 2316,
+		name: "Home Entertainment System",
+		mac: "00:00:00:00:00:01",
+		port: "0",
+		SecureOn: "password1",
+	},
+	{
+		id: 2317,
+		name: "Conan Exiles Server",
+		mac: "00:00:00:00:00:01",
+		port: "0",
+		SecureOn: "password1",
+	},
+	{
+		id: 2318,
+		name: "Space Engineers Server",
+		mac: "00:00:00:00:00:01",
+		port: "0",
+		SecureOn: "password1",
+	},
+];
