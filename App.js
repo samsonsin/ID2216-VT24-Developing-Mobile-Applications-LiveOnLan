@@ -26,9 +26,9 @@ function App() {
 	return (
 		<View className="w-100% h-100%">
 			<FeedbackPresenter></FeedbackPresenter>
-			<HelpScreenPresenter></HelpScreenPresenter>
+			{/* <HelpScreenPresenter></HelpScreenPresenter>
 			<Topbar></Topbar>
-			<DrawerPresenter></DrawerPresenter>
+			<DrawerPresenter></DrawerPresenter> */}
 
 		</View>
 	);
