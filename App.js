@@ -8,6 +8,11 @@ import {
 	MD3LightTheme as DefaultTheme,
 	PaperProvider,
 } from "react-native-paper";
+import Topbar from "./presenters/TopbarPresenter";
+import DrawerPresenter from "./presenters/DrawerPresenter";
+
+import AddDevicePresenter from "./presenters/AddDevicePresenter";
+import EditDevicePresenter from "./presenters/EditDevicePresenter";
 import HelpScreenPresenter from "./presenters/HelpScreenPresenter";
 import FeedbackPresenter from "./presenters/FeedbackPresenter";
 import HomePresenter from "./presenters/HomePresenter";
