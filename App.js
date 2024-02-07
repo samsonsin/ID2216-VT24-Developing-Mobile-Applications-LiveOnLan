@@ -9,6 +9,9 @@ import {
 } from "react-native-paper";
 import Topbar from "./presenters/TopbarPresenter";
 import DrawerPresenter from "./presenters/DrawerPresenter";
+import HelpScreenPresenter from "./presenters/HelpScreenPresenter";
+import FeedbackPresenter from "./presenters/FeedbackPresenter";
+
 
 const theme = {
 	...DefaultTheme,
@@ -22,8 +25,11 @@ const theme = {
 function App() {
 	return (
 		<View className="w-100% h-100%">
+			<FeedbackPresenter></FeedbackPresenter>
+			{/* <HelpScreenPresenter></HelpScreenPresenter>
 			<Topbar></Topbar>
-			<DrawerPresenter></DrawerPresenter>
+			<DrawerPresenter></DrawerPresenter> */}
+
 		</View>
 	);
 }
@@ -37,3 +43,5 @@ export default function Main() {
 }
 
 AppRegistry.registerComponent(appName, () => Main);
+
+

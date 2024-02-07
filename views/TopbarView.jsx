@@ -10,4 +10,5 @@ export default function TopbarView() {
 			<Appbar.Action icon="magnify" onPress={() => {}} />
 		</Appbar.Header>
 	);
+
 }
