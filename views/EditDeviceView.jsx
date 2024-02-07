@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 //import  from "react-native-paper";
 
-export default function AddDeviceView(pwops) {
+export default function EditDeviceView(pwops) {
 	return (
 		<View className="bg-[#5ef] py-6 h-full">
             {/*<ScrollView className="h-20"
@@ -47,7 +47,7 @@ export default function AddDeviceView(pwops) {
                 {/*</ScrollView>*/}
             <View className="px-16 flex-1">
                 <TouchableOpacity style={styles.button}>
-                    <Text style={{fontSize: 25, color: "#000"}}>Add Device</Text>
+                    <Text style={{fontSize: 25, color: "#000"}}>Confirm</Text>
                 </TouchableOpacity>
             </View>
         </View>

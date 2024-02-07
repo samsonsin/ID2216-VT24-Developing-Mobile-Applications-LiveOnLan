@@ -9,6 +9,8 @@ import {
 } from "react-native-paper";
 import Topbar from "./presenters/TopbarPresenter";
 import DrawerPresenter from "./presenters/DrawerPresenter";
+import AddDevicePresenter from "./presenters/AddDevicePresenter";
+import EditDevicePresenter from "./presenters/EditDevicePresenter";
 
 const theme = {
 	...DefaultTheme,
@@ -23,7 +25,8 @@ function App() {
 	return (
 		<View className="w-100% h-100%">
 			<Topbar></Topbar>
-			<DrawerPresenter></DrawerPresenter>
+			<AddDevicePresenter></AddDevicePresenter>
+			{/*<DrawerPresenter></DrawerPresenter>*/}
 		</View>
 	);
 }
