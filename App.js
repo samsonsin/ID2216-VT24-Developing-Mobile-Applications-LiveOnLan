@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import * as React from "react";
 import { AppRegistry } from "react-native";
 import { name as appName } from "./app.json";
@@ -14,7 +15,9 @@ import AddDevicePresenter from "./presenters/AddDevicePresenter";
 import EditDevicePresenter from "./presenters/EditDevicePresenter";
 import HelpScreenPresenter from "./presenters/HelpScreenPresenter";
 import FeedbackPresenter from "./presenters/FeedbackPresenter";
-
+import HomePresenter from "./presenters/HomePresenter";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
 
 const theme = {
 	...DefaultTheme,
@@ -25,17 +28,16 @@ const theme = {
 	},
 };
 
+const Drawer = createDrawerNavigator();
 function App() {
 	return (
-		<View className="w-100% h-100%">
-			<FeedbackPresenter></FeedbackPresenter>
-			{/* <HelpScreenPresenter></HelpScreenPresenter>
-			<Topbar></Topbar>*/}
-			{/*<AddDevicePresenter></AddDevicePresenter>*/}
-      {/*<EditDevicePresenter></EditDevicePresenter>*/}
-			{/*<DrawerPresenter></DrawerPresenter>*/}
-
-		</View>
+		<NavigationContainer>
+			<Drawer.Navigator initialRouteName="Home">
+				<Drawer.Screen name="Home" component={HomePresenter} />
+				<Drawer.Screen name="Feedback" component={FeedbackPresenter} />
+				<Drawer.Screen name="Help" component={HelpScreenPresenter} />
+			</Drawer.Navigator>
+		</NavigationContainer>
 	);
 }
 
@@ -48,5 +50,3 @@ export default function Main() {
 }
 
 AppRegistry.registerComponent(appName, () => Main);
-
-
