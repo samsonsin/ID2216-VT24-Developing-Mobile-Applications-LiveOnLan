@@ -9,6 +9,9 @@ import {
 } from "react-native-paper";
 import Topbar from "./presenters/TopbarPresenter";
 import DrawerPresenter from "./presenters/DrawerPresenter";
+
+import AddDevicePresenter from "./presenters/AddDevicePresenter";
+import EditDevicePresenter from "./presenters/EditDevicePresenter";
 import HelpScreenPresenter from "./presenters/HelpScreenPresenter";
 import FeedbackPresenter from "./presenters/FeedbackPresenter";
 
@@ -27,8 +30,10 @@ function App() {
 		<View className="w-100% h-100%">
 			<FeedbackPresenter></FeedbackPresenter>
 			{/* <HelpScreenPresenter></HelpScreenPresenter>
-			<Topbar></Topbar>
-			<DrawerPresenter></DrawerPresenter> */}
+			<Topbar></Topbar>*/}
+			{/*<AddDevicePresenter></AddDevicePresenter>*/}
+      {/*<EditDevicePresenter></EditDevicePresenter>*/}
+			{/*<DrawerPresenter></DrawerPresenter>*/}
 
 		</View>
 	);
