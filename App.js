@@ -14,6 +14,7 @@ import FeedbackPresenter from "./presenters/FeedbackPresenter";
 import HomePresenter from "./presenters/HomePresenter";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
+import SettingsPresenter from "./presenters/SettingsPresenter";
 
 const theme = {
 	...DefaultTheme,
@@ -32,6 +33,7 @@ function App() {
 				<Drawer.Screen name="Home" component={HomePresenter} />
 				<Drawer.Screen name="Feedback" component={FeedbackPresenter} />
 				<Drawer.Screen name="Help" component={HelpScreenPresenter} />
+				<Drawer.Screen name="Settings" component={SettingsPresenter} />
 				<Drawer.Screen
 					name="Edit Device Screen"
 					component={EditDevicePresenter}

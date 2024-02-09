@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpaci
 
 export default function AddDeviceView(pwops) {
 	return (
-		<View className="bg-[#5ef] py-6 h-full">
+		<View className="bg-[#b3e3fc] py-6 h-full">
             {/*<ScrollView className="h-20"
                 contentContainerStyle={{
                     flex: 1,
@@ -22,7 +22,7 @@ export default function AddDeviceView(pwops) {
                 </View>
                 <View className="">{/*Advanced Options*/}
                     <View>{/*Dividing view*/}
-                        <View className="bg-[#4cd] mt-3 mb-3 ml-2 mr-2 h-2 rounded-lg"></View>
+                        <View className="bg-[#60BCE0] mt-3 mb-3 ml-2 mr-2 h-2 rounded-lg"></View>
                         <Text style={{textAlign: "center", fontSize: 30,}}>Advanced Options</Text>
                     </View>
                     <View style={styles.inputView}>
