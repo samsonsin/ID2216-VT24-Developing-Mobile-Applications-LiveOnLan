@@ -11,6 +11,12 @@ import {
 } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+	default: "native",
+});
+
 export default function HomeView({ devices, navigation }) {
 	return (
 		<>
