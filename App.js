@@ -19,8 +19,8 @@ const theme = {
 	...DefaultTheme,
 	colors: {
 		...DefaultTheme.colors,
-		primary: "tomato",
-		secondary: "yellow",
+		primary: "#71bdff",
+		secondary: "#00e676",
 	},
 };
 
@@ -33,10 +33,16 @@ function App() {
 				<Drawer.Screen name="Feedback" component={FeedbackPresenter} />
 				<Drawer.Screen name="Help" component={HelpScreenPresenter} />
 				<Drawer.Screen
+					options={{
+						drawerItemStyle: { display: "none" },
+					}}
 					name="Edit Device Screen"
 					component={EditDevicePresenter}
 				/>
 				<Drawer.Screen
+					options={{
+						drawerItemStyle: { display: "none" },
+					}}
 					name="Add Device Screen"
 					component={AddDevicePresenter}
 				/>

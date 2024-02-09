@@ -7,20 +7,31 @@ import {
 	IconButton,
 	Card,
 	Surface,
+	Button,
 } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function HomeView({ devices }) {
+export default function HomeView({ devices, navigation }) {
 	return (
-		<ScrollView className=" w-full h-full p-2 flex flex-col gap-2 gap-x-0">
-			{devices.map((element) => {
-				return CustomCard(element);
-			})}
-		</ScrollView>
+		<>
+			<ScrollView className=" w-full h-full p-2 flex flex-col gap-2 gap-x-0">
+				{devices.map((element) => {
+					return CustomCard(element, navigation);
+				})}
+			</ScrollView>
+			<Button
+				icon="plus"
+				mode="elevated"
+				className="absolute bottom-0 m-5 self-center"
+				onPress={() => navigation.navigate("Add Device Screen")}
+			>
+				Add New Device
+			</Button>
+		</>
 	);
 }
 
-function CustomCard(data) {
+function CustomCard(data, navigation) {
 	return (
 		<LinearGradient
 			key={data.id}
@@ -34,7 +45,7 @@ function CustomCard(data) {
 					className=""
 					icon="dots-vertical"
 					mode="default"
-					onPress={() => console.log("Pressed")}
+					onPress={() => navigation.navigate("Edit Device Screen")}
 				></IconButton>
 			</View>
 			<View className="flex flex-row h-1/2 justify-evenly items-end">
