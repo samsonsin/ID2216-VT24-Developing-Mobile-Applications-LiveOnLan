@@ -25,6 +25,12 @@ const theme = {
 	},
 };
 
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+	default: "native",
+});
+
 const Drawer = createDrawerNavigator();
 function App() {
 	return (
