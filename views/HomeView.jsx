@@ -8,6 +8,7 @@ import {
 	Card,
 	Surface,
 	Button,
+	Drawer,
 } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -40,7 +41,7 @@ function CustomCard(data, navigation) {
 		>
 			<LinearGradient
 				key={data.id}
-				className="rounded-lg h-32 flex-column justify-between p-3 pb-0"
+				className="rounded-lg h-28 flex-column justify-between p-3 pb-0"
 				colors={["#b3e3fc", "#e8f4fa"]}
 			>
 				<View className="flex flex-row justify-between items-center">
@@ -55,15 +56,16 @@ function CustomCard(data, navigation) {
 				</View>
 				<View className="flex flex-row h-1/2 justify-evenly items-end">
 					<IconButton
-						className="grow"
+						className="opacity-80 w-1/3"
 						icon="power"
-						mode="outlined"
+						mode="contained"
 						onPress={() => console.log("Pressed")}
 					></IconButton>
 					<IconButton
-						className="grow"
+						className="opacity-80 w-1/3"
 						icon="power-off"
-						mode="outlined"
+						mode="contained"
+						iconColor="red"
 						onPress={() => console.log("Pressed")}
 					></IconButton>
 				</View>
