@@ -15,6 +15,7 @@ import HomePresenter from "./presenters/HomePresenter";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import SettingsPresenter from "./presenters/SettingsPresenter";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const theme = {
 	...DefaultTheme,
@@ -30,31 +31,30 @@ import { NativeWindStyleSheet } from "nativewind";
 NativeWindStyleSheet.setOutput({
 	default: "native",
 });
-
+const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 function App() {
 	return (
 		<NavigationContainer>
-			<Drawer.Navigator initialRouteName="Home">
-				<Drawer.Screen name="Home" component={HomePresenter} />
-				<Drawer.Screen name="Feedback" component={FeedbackPresenter} />
-				<Drawer.Screen name="Help" component={HelpScreenPresenter} />
-				<Drawer.Screen name="Settings" component={SettingsPresenter} />
-				<Drawer.Screen
-					options={{
-						drawerItemStyle: { display: "none" },
-					}}
+			<Stack.Navigator>
+				<Stack.Screen
+					name="root"
+					options={{ headerShown: false }}
+					children={() => (
+						<Drawer.Navigator initialRouteName="Home">
+							<Drawer.Screen name="Home" component={HomePresenter} />
+							<Drawer.Screen name="Feedback" component={FeedbackPresenter} />
+							<Drawer.Screen name="Help" component={HelpScreenPresenter} />
+							<Drawer.Screen name="Settings" component={SettingsPresenter} />
+						</Drawer.Navigator>
+					)}
+				/>
+				<Stack.Screen
 					name="Edit Device Screen"
 					component={EditDevicePresenter}
 				/>
-				<Drawer.Screen
-					options={{
-						drawerItemStyle: { display: "none" },
-					}}
-					name="Add Device Screen"
-					component={AddDevicePresenter}
-				/>
-			</Drawer.Navigator>
+				<Stack.Screen name="Add Device Screen" component={AddDevicePresenter} />
+			</Stack.Navigator>
 		</NavigationContainer>
 	);
 }

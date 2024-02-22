@@ -14,7 +14,7 @@ import { LinearGradient } from "expo-linear-gradient";
 export default function HomeView({ devices, navigation }) {
 	return (
 		<>
-			<ScrollView className=" w-full h-full p-2 flex flex-col gap-4 gap-x-0">
+			<ScrollView className=" w-full h-full flex flex-col gap-4 gap-x-0">
 				{devices.map((element) => {
 					return CustomCard(element, navigation);
 				})}
@@ -33,7 +33,11 @@ export default function HomeView({ devices, navigation }) {
 
 function CustomCard(data, navigation) {
 	return (
-		<Surface elevation={2} key={data.id} className="rounded-lg">
+		<Surface
+			elevation={2}
+			key={data.id}
+			className="rounded-lg top-2 left-2 mr-4"
+		>
 			<LinearGradient
 				key={data.id}
 				className="rounded-lg h-32 flex-column justify-between p-3 pb-0"
