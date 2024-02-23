@@ -4,13 +4,12 @@ import AddDeviceView from "../views/AddDeviceView";
 
 export default function AddDevicePresenter(props) {
 	
-    return (
-        <View>
-            <AddDeviceView
-                text = {"hello world2"}
+    const [show, toggle] = React.useState(false);
 
-                >
-            </AddDeviceView>
-        </View>
+    const toggleAdvancedSettings = () => {
+        toggle((current) => !current);
+    };
+
+    return (AddDeviceView({show: show, toggle: toggleAdvancedSettings})
     )
 }
