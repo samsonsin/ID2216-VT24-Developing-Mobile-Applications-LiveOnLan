@@ -4,6 +4,13 @@ import SettingsView from "../views/SettingsView";
 
 export default function SettingsPresenter(props) {
 
-    return SettingsView();
+    const [show, toggle] = React.useState(false);
+
+    const toggleAdvancedSettings = () => {
+        toggle((current) => !current);
+    };
+
+    return (SettingsView({ show: show, toggle: toggleAdvancedSettings })
+    )
 
 }
