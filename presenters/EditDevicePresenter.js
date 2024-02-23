@@ -4,13 +4,12 @@ import EditDeviceView from "../views/EditDeviceView";
 
 export default function EditDevicePresenter(props) {
 	
-    return (
-        <View>
-            <EditDeviceView
-                text = {"hello world3"}
+    const [show, toggle] = React.useState(false);
 
-                >
-            </EditDeviceView>
-        </View>
+    const toggleAdvancedSettings = () => {
+        toggle((current) => !current);
+    };
+
+    return (EditDeviceView({show: show, toggle: toggleAdvancedSettings})
     )
 }
