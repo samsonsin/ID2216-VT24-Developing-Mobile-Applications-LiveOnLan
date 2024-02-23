@@ -171,11 +171,3 @@ export default function SettingsView(pwops) {
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	switchView: {
-		flexDirection: "row",
-		margin: 6,
-		justifyContent: "space-between",
-	},
-});
