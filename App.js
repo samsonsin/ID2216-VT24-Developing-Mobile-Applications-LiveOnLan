@@ -6,7 +6,7 @@ import {
 	MD3LightTheme as DefaultTheme,
 	PaperProvider,
 } from "react-native-paper";
-
+import { initModel } from "./model";
 import AddDevicePresenter from "./presenters/AddDevicePresenter";
 import EditDevicePresenter from "./presenters/EditDevicePresenter";
 import HelpScreenPresenter from "./presenters/HelpScreenPresenter";
@@ -34,6 +34,7 @@ NativeWindStyleSheet.setOutput({
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 function App() {
+	React.useLayoutEffect(() => initModel(), []);
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>
