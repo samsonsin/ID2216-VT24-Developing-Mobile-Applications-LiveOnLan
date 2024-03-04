@@ -14,7 +14,7 @@ import uuid from "react-native-uuid";
 //Add Variable name, default value and a empty object for callbacks here:
 const dataStruct = {
 	Example: { defaultValue: null, callbacks: {} },
-	Data: { defaultValue: [], callbacks: {} },
+	test: { defaultValue: [], callbacks: {} },
 };
 
 //-------- Custom Hooks --------
@@ -27,7 +27,7 @@ export function useExample() {
 }
 
 export function useStorage() {
-	return useCustomHook("Data");
+	return useCustomHook("test");
 }
 
 //-------- Public Functions --------
@@ -49,10 +49,13 @@ async function printStorage() {
 export function initModel() {
 	//If value does not exist in local storage, then load default value
 	Object.keys(dataStruct).map((e) => {
-		fromLocalStorage(e) === null &&
-			toLocalStorage(e, JSON.stringify(dataStruct[e].defaultValue));
+		fromLocalStorage(e).then((err, result) => {
+			result === null ||
+				(result === undefined &&
+					toLocalStorage(e, JSON.stringify(dataStruct[e].defaultValue)));
+		});
 	});
-	printStorage();
+	// printStorage();
 	// wipeStorage();
 	//Put subsciption logic here with our own Database
 	//
@@ -63,7 +66,7 @@ export function initModel() {
 
 //Read value from local storage.
 async function fromLocalStorage(target) {
-	return JSON.parse(await AsyncStorage.getItem(target));
+	AsyncStorage.getItem(target);
 }
 
 //Write new value to localstorage
@@ -77,7 +80,7 @@ function subscribeTo(target, callback) {
 	// create uid, add it to callbackStruct
 	const id = uuid.v4();
 	dataStruct[target].callbacks[id] = callback;
-	callback(fromLocalStorage(target));
+	fromLocalStorage(target).then((err, result) => callback(result));
 	return () => {
 		//return function that removes field in callbackStruct
 		delete dataStruct[target].callbacks[id];
@@ -86,10 +89,10 @@ function subscribeTo(target, callback) {
 
 // Sets a new value for target and calls its callbacks
 function setValue(target, value) {
-	if (value !== fromLocalStorage(target)) {
-		toLocalStorage(target, value);
-		callStruct(target);
-	}
+	fromLocalStorage(target).then((err, result) => {
+		if (value !== result)
+			toLocalStorage(target, value).then(() => callStruct(target));
+	});
 }
 
 //calls the callbacks of some target.
@@ -101,7 +104,7 @@ function callStruct(target) {
 		  )
 		: //If there are some callbacks, call them all
 		  Object.values(dataStruct[target].callbacks).forEach((e) =>
-				e(fromLocalStorage(target))
+				fromLocalStorage(target).then((err, result) => e(result))
 		  );
 }
 
@@ -120,14 +123,13 @@ function useCustomHook(target) {
 		}
 		return undefined;
 	}
-	const [val, setVal] = useState(fromLocalStorage(target));
+	const [val, setVal] = useState(null);
+	fromLocalStorage(target).then((err, result) => setVal(result));
 	useEffect(() => {
 		return subscribeTo(target, (e) => {
 			setVal(e);
+			console.log("setval: ", e);
 		});
 	}, []);
 	return [val, (e) => setValue(target, e)];
-}
-export function test(defvalue) {
-	return useState(defvalue);
 }
