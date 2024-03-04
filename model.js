@@ -14,7 +14,39 @@ import uuid from "react-native-uuid";
 //Add Variable name, default value and a empty object for callbacks here:
 const dataStruct = {
 	Example: { defaultValue: [], callbacks: {} },
-	Data: { defaultValue: [], callbacks: {} },
+	Data: {
+		defaultValue: [
+			{
+				id: "512512",
+				displayname: "Test 1",
+				mac: "11:22:33:ff:ee",
+				port: "21",
+				secureon: "11:22:33:ff:ee",
+			},
+			{
+				id: "512513",
+				displayname: "Test 2",
+				mac: "11:22:33:ff:ee",
+				port: "21",
+				secureon: "11:22:33:ff:ee",
+			},
+			{
+				id: "512514",
+				displayname: "Test 3",
+				mac: "11:22:33:ff:ee",
+				port: "21",
+				secureon: "11:22:33:ff:ee",
+			},
+			{
+				id: "512515",
+				displayname: "Test 4",
+				mac: "11:22:33:ff:ee",
+				port: "21",
+				secureon: "11:22:33:ff:ee",
+			},
+		],
+		callbacks: {},
+	},
 };
 
 //-------- Custom Hooks --------
@@ -65,8 +97,8 @@ export function initModel() {
 }
 
 //Read value from local storage.
-function fromLocalStorage(target) {
-	return AsyncStorage.getItem(target);
+async function fromLocalStorage(target) {
+	JSON.parse(await AsyncStorage.getItem(target));
 }
 
 //Write new value to localstorage
@@ -125,7 +157,7 @@ function useCustomHook(target) {
 		}
 		return undefined;
 	}
-	const [val, setVal] = useState(null);
+	const [val, setVal] = useState(dataStruct[target].defaultValue);
 	fromLocalStorage(target).then((result) => setVal(result));
 	useEffect(() => {
 		return subscribeTo(target, (e) => {
