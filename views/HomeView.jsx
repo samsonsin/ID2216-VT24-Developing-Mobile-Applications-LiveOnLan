@@ -15,10 +15,13 @@ import { LinearGradient } from "expo-linear-gradient";
 export default function HomeView({ devices, navigation }) {
 	return (
 		<>
-			<ScrollView className=" w-full h-full flex flex-col gap-4 gap-x-0">
-				{devices.map((element) => {
-					return CustomCard(element, navigation);
-				})}
+			<ScrollView className=" w-full h-full flex flex-col gap-4 gap-x-0 overflow-visible">
+				{devices ? (
+					devices.map((element) => CustomCard(element, navigation))
+				) : (
+					<View />
+				)}
+				<View className="h-10" />
 			</ScrollView>
 			<Button
 				icon="plus"
@@ -46,7 +49,7 @@ function CustomCard(data, navigation) {
 			>
 				<View className="flex flex-row justify-between items-center">
 					<View className="w-10"></View>
-					<Text className="text-lg">{data.name}</Text>
+					<Text className="text-lg">{data.displayname}</Text>
 					<IconButton
 						className=""
 						icon="dots-vertical"

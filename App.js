@@ -34,7 +34,9 @@ NativeWindStyleSheet.setOutput({
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 function App() {
-	React.useLayoutEffect(() => initModel(), []);
+	React.useLayoutEffect(() => {
+		initModel();
+	}, []);
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>

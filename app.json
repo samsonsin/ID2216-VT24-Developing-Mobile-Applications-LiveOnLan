@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.samsonsin.ID2216VT24DevelopingMobileApplicationsLiveOnLan"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "777c0d03-d6ea-4dae-bd56-cead0adf96e9"
+      }
     }
   }
 }

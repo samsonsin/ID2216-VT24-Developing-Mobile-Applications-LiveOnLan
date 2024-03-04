@@ -81,9 +81,10 @@ async function printStorage() {
 export function initModel() {
 	//If value does not exist in local storage, then load default value
 	Object.keys(dataStruct).map((e) => {
-		fromLocalStorage(e).then((result, err, test) => {
-			result === null &&
-				toLocalStorage(e, JSON.stringify(dataStruct[e].defaultValue));
+		fromLocalStorage(e).then((result) => {
+			if (result === null) {
+				toLocalStorage(e, dataStruct[e].defaultValue);
+			}
 		});
 	});
 	// printStorage();
@@ -98,7 +99,11 @@ export function initModel() {
 
 //Read value from local storage.
 async function fromLocalStorage(target) {
-	JSON.parse(await AsyncStorage.getItem(target));
+	return new Promise((resolve, reject) =>
+		AsyncStorage.getItem(target)
+			.then((result) => resolve(JSON.parse(result)))
+			.catch((error) => reject(error))
+	);
 }
 
 //Write new value to localstorage
@@ -157,12 +162,11 @@ function useCustomHook(target) {
 		}
 		return undefined;
 	}
-	const [val, setVal] = useState(dataStruct[target].defaultValue);
+	const [val, setVal] = useState(null);
 	fromLocalStorage(target).then((result) => setVal(result));
 	useEffect(() => {
 		return subscribeTo(target, (e) => {
 			setVal(e);
-			console.log("setval: ", e);
 		});
 	}, []);
 	return [val, (e) => setValue(target, e)];
