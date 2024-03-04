@@ -12,7 +12,9 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function AddDeviceView(props) {
 	const [displayName, setDisplayname] = React.useState("");
-
+	const [mac, setMac] = React.useState("");
+	const [port, setPort] = React.useState("");
+	const [secureon, setSecureon] = React.useState("");
 	return (
 		<View className="bg-[#fff] h-full">
 			<>
@@ -46,8 +48,12 @@ export default function AddDeviceView(props) {
 								colors={["#b3e3fc", "#e8f4fa"]}
 							>
 								<View className="flex flex-col justify-between items-left">
-									<Text className="text-lg">MAC Address</Text>
-									<TextInput className="text-[20px] h-[45px] p-[6px] border-2 border-[#000] rounded-md"></TextInput>
+									<TextInput
+										mode="outlined"
+										label="Device Name"
+										value={mac}
+										onChangeText={(text) => setMac(text)}
+									/>
 								</View>
 								<View className="flex flex-row h-1/2 justify-evenly items-end"></View>
 							</LinearGradient>
@@ -74,8 +80,12 @@ export default function AddDeviceView(props) {
 										colors={["#b3e3fc", "#e8f4fa"]}
 									>
 										<View className="flex flex-col justify-between items-left">
-											<Text className="text-lg">Port</Text>
-											<TextInput className="text-[20px] h-[45px] p-[6px] border-2 border-[#000] rounded-md"></TextInput>
+											<TextInput
+												mode="outlined"
+												label="Port"
+												value={port}
+												onChangeText={(text) => setPort(text)}
+											/>
 										</View>
 										<View className="flex flex-row h-1/2 justify-evenly items-end"></View>
 									</LinearGradient>
@@ -89,8 +99,12 @@ export default function AddDeviceView(props) {
 										colors={["#b3e3fc", "#e8f4fa"]}
 									>
 										<View className="flex flex-col justify-between items-left">
-											<Text className="text-lg">SecureOn Password</Text>
-											<TextInput className="text-[20px] h-[45px] p-[6px] border-2 border-[#000] rounded-md"></TextInput>
+											<TextInput
+												mode="outlined"
+												label="SecureOn Password"
+												value={secureon}
+												onChangeText={(text) => setSecureon(text)}
+											/>
 										</View>
 										<View className="flex flex-row h-1/2 justify-evenly items-end"></View>
 									</LinearGradient>
@@ -189,7 +203,7 @@ export default function AddDeviceView(props) {
 					icon="check"
 					mode="elevated"
 					className="absolute bottom-0 m-5 self-center"
-					onPress={() => props.createDevice(displayName, "0", "0", "0")}
+					onPress={() => props.createDevice(displayName, mac, port, secureon)}
 				>
 					Add Device
 				</Button>
