@@ -16,7 +16,9 @@ export default function AddDevicePresenter(props) {
 	function createDevice(displayname, mac, port, secureon) {
 		id = uuid.v4();
 		console.log({ id, displayname, mac, port, secureon });
-		setMydata({ id, displayname, mac, port, secureon });
+		console.log("IN COMPONENT first", mydata);
+
+		setMydata([...mydata, { id, displayname, mac, port, secureon }]);
 		console.log("IN COMPONENT", mydata);
 	}
 
