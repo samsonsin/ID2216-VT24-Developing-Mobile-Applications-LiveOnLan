@@ -38,7 +38,7 @@ export default function AddDeviceView({
 					<ScrollView className="m-5 rounded-md">
 						<Surface
 							elevation={2}
-							className="p-5 m-5 overflow-visible rounded-md flex flex-col gap-2"
+							className="p-5 m-5 overflow-visible rounded-md space-y-2"
 						>
 							<TextInput
 								mode="outlined"
