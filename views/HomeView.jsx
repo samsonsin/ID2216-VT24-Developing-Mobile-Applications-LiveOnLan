@@ -12,13 +12,18 @@ import {
 } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function HomeView({ devices, navigation, setEditDeviceID }) {
+export default function HomeView({
+	devices,
+	navigation,
+	setEditDeviceID,
+	sendWoLPacket,
+}) {
 	return (
 		<>
 			<ScrollView className=" w-full h-full flex flex-col gap-4 gap-x-0 overflow-visible">
 				{devices ? (
 					Object.keys(devices).map((key) =>
-						CustomCard(key, devices[key], setEditDeviceID)
+						CustomCard(key, devices[key], setEditDeviceID, sendWoLPacket)
 					)
 				) : (
 					<View />
@@ -29,7 +34,7 @@ export default function HomeView({ devices, navigation, setEditDeviceID }) {
 	);
 }
 
-function CustomCard(uniqueKey, data, setEditDeviceID) {
+function CustomCard(uniqueKey, data, setEditDeviceID, sendWoLPacket) {
 	return (
 		<Surface
 			elevation={2}
@@ -55,7 +60,9 @@ function CustomCard(uniqueKey, data, setEditDeviceID) {
 						className="opacity-80 w-1/3"
 						icon="power"
 						mode="contained"
-						onPress={() => console.log("Pressed")}
+						onPress={() =>
+							sendWoLPacket(data.address, data.mac, data.port, data.secureon)
+						}
 					></IconButton>
 					<IconButton
 						className="opacity-80 w-1/3"

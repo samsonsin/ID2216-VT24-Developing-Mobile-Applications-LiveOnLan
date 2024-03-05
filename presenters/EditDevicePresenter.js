@@ -10,15 +10,18 @@ export default function EditDevicePresenter(props) {
 	const [mydata, setMydata] = useStorage();
 	const [editDeviceID, setEditDeviceID] = useEditDeviceID();
 
-	function editDevice(remove, id, displayname, mac, port, secureon) {
+	function editDevice(remove, id, displayname, address, mac, port, secureon) {
 		if (remove) {
 			const oldData = { ...mydata };
 			delete oldData[id];
 			return setMydata(oldData);
 		}
-		return setMydata({ ...mydata, [id]: { displayname, mac, port, secureon } });
+		return setMydata({
+			...mydata,
+			[id]: { displayname, address, mac, port, secureon },
+		});
 	}
-	mydata;
+
 	return EditDeviceView({
 		mydata,
 		editDeviceID,

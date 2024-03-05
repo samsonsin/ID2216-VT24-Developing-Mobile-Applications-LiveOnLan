@@ -10,9 +10,12 @@ export default function AddDevicePresenter(props) {
 	const [modalVisibility, setModalVisibility] = useState(false);
 	const [mydata, setMydata] = useStorage();
 
-	function createDevice(displayname, mac, port, secureon) {
+	function createDevice(displayname, address, mac, port, secureon) {
 		id = uuid.v4();
-		setMydata({ ...mydata, [id]: { displayname, mac, port, secureon } });
+		setMydata({
+			...mydata,
+			[id]: { displayname, address, mac, port, secureon },
+		});
 	}
 
 	return AddDeviceView({
