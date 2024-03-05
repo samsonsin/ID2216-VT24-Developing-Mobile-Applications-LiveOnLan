@@ -14,6 +14,7 @@ import uuid from "react-native-uuid";
 //Add Variable name, default value and a empty object for callbacks here:
 const dataStruct = {
 	Example: { defaultValue: [], callbacks: {} },
+	editDeviceID: { defaultValue: null, callbacks: {} },
 	Data: {
 		defaultValue: {
 			"11edc52b-2918-4d71-9058-f7285e29d894": {
@@ -58,6 +59,10 @@ export function useStorage() {
 	return useCustomHook("Data");
 }
 
+export function useEditDeviceID() {
+	return useCustomHook("editDeviceID");
+}
+
 //-------- Public Functions --------
 
 async function wipeStorage() {
@@ -94,20 +99,19 @@ export function initModel() {
 }
 
 //Read value from local storage.
-async function fromLocalStorage(target) {
-	return new Promise((resolve, reject) =>
-		AsyncStorage.getItem(target)
-			.then((result) => resolve(JSON.parse(result)))
-			.catch((error) => reject(error))
-	);
+function fromLocalStorage(target) {
+	return AsyncStorage.getItem(target).then((result) => JSON.parse(result));
 }
 
 //Write new value to localstorage
 function toLocalStorage(target, value) {
-	console.log("Adding", value, "to key", target);
 	return AsyncStorage.setItem(target, JSON.stringify(value));
 }
 //-------- Internal funcs --------
+
+export function simpleStorage(target) {
+	return [fromLocalStorage(target), (value) => toLocalStorage(target, value)];
+}
 
 //Subscribes to the changes on some value with a callback. Returns the unsubscribe function
 function subscribeTo(target, callback) {
@@ -123,10 +127,7 @@ function subscribeTo(target, callback) {
 
 // Sets a new value for target and calls its callbacks
 function setValue(target, value) {
-	fromLocalStorage(target).then((result) => {
-		if (value !== result)
-			toLocalStorage(target, value).then(() => callStruct(target));
-	});
+	toLocalStorage(target, value).then(() => callStruct(target));
 }
 
 //calls the callbacks of some target.
@@ -146,21 +147,7 @@ function callStruct(target) {
 
 //Creates a useState hook that subscribes to model 'target' and updates model & any other states on the same target if changed
 function useCustomHook(target) {
-	if (
-		fromLocalStorage(target) === undefined ||
-		dataStruct[target] === undefined
-	) {
-		if (process.env.NODE_ENV === "development") {
-			console.error(
-				"useCustomHook: Cannot find target: ",
-				target,
-				". Make sure that it is defined in the datastruct and that it is available in localstorage"
-			);
-		}
-		return undefined;
-	}
 	const [val, setVal] = useState(null);
-	fromLocalStorage(target).then((result) => setVal(result));
 	useEffect(() => {
 		return subscribeTo(target, (e) => {
 			setVal(e);
