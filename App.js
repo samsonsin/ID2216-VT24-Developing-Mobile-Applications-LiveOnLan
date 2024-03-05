@@ -46,6 +46,7 @@ function App() {
 				<Drawer.Screen name="Settings" component={SettingsPresenter} />
 			</Drawer.Navigator>
 			<AddDevicePresenter />
+			<EditDevicePresenter />
 		</NavigationContainer>
 	);
 }
