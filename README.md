@@ -1,0 +1,1 @@
+To test the app, please clone the project, make sure node is installed and run 'npm install' in the project directory. Provided all modules were installed, you can simply run 'npx expo'. This will launch the development enviorment which you can connect to using the 'Expo Go' app available on the Google Play Store. 
