@@ -3,14 +3,11 @@ import { View, Text } from "react-native";
 import AddDeviceView from "../views/AddDeviceView";
 import { useStorage } from "../model";
 import uuid from "react-native-uuid";
+import { useState } from "react";
 
 export default function AddDevicePresenter(props) {
-	const [show, toggle] = React.useState(false);
-
-	const toggleAdvancedSettings = () => {
-		toggle((current) => !current);
-	};
-
+	const [showAdvancedSettings, setShowAdvancedSettings] = React.useState(false);
+	const [modalVisibility, setModalVisibility] = useState(false);
 	const [mydata, setMydata] = useStorage();
 
 	function createDevice(displayname, mac, port, secureon) {
@@ -19,8 +16,10 @@ export default function AddDevicePresenter(props) {
 	}
 
 	return AddDeviceView({
-		show: show,
-		toggle: toggleAdvancedSettings,
+		modalVisibility,
+		setModalVisibility,
+		showAdvancedSettings,
+		setShowAdvancedSettings,
 		createDevice,
 	});
 }

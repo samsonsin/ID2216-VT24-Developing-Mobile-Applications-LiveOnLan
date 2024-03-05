@@ -25,14 +25,6 @@ export default function HomeView({ devices, navigation }) {
 				)}
 				<View className="h-10" />
 			</ScrollView>
-			<Button
-				icon="plus"
-				mode="elevated"
-				className="absolute bottom-0 m-5 self-center"
-				onPress={() => navigation.navigate("Add Device Screen")}
-			>
-				Add New Device
-			</Button>
 		</>
 	);
 }
