@@ -6,7 +6,7 @@ import {
 	MD3LightTheme as DefaultTheme,
 	PaperProvider,
 } from "react-native-paper";
-
+import { initModel } from "./model";
 import AddDevicePresenter from "./presenters/AddDevicePresenter";
 import EditDevicePresenter from "./presenters/EditDevicePresenter";
 import HelpScreenPresenter from "./presenters/HelpScreenPresenter";
@@ -34,27 +34,19 @@ NativeWindStyleSheet.setOutput({
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 function App() {
+	React.useLayoutEffect(() => {
+		initModel();
+	}, []);
 	return (
 		<NavigationContainer>
-			<Stack.Navigator>
-				<Stack.Screen
-					name="root"
-					options={{ headerShown: false }}
-					children={() => (
-						<Drawer.Navigator initialRouteName="Home">
-							<Drawer.Screen name="Home" component={HomePresenter} />
-							<Drawer.Screen name="Feedback" component={FeedbackPresenter} />
-							<Drawer.Screen name="Help" component={HelpScreenPresenter} />
-							<Drawer.Screen name="Settings" component={SettingsPresenter} />
-						</Drawer.Navigator>
-					)}
-				/>
-				<Stack.Screen
-					name="Edit Device Screen"
-					component={EditDevicePresenter}
-				/>
-				<Stack.Screen name="Add Device Screen" component={AddDevicePresenter} />
-			</Stack.Navigator>
+			<Drawer.Navigator initialRouteName="Home">
+				<Drawer.Screen name="Home" component={HomePresenter} />
+				<Drawer.Screen name="Feedback" component={FeedbackPresenter} />
+				<Drawer.Screen name="Help" component={HelpScreenPresenter} />
+				<Drawer.Screen name="Settings" component={SettingsPresenter} />
+			</Drawer.Navigator>
+			<AddDevicePresenter />
+			<EditDevicePresenter />
 		</NavigationContainer>
 	);
 }

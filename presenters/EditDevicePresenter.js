@@ -1,15 +1,30 @@
 import * as React from "react";
-import {View, Text} from 'react-native';
+import { View, Text } from "react-native";
 import EditDeviceView from "../views/EditDeviceView";
+import { useStorage, useEditDeviceID } from "../model";
+import uuid from "react-native-uuid";
+import { useState } from "react";
 
 export default function EditDevicePresenter(props) {
-	
-    const [show, toggle] = React.useState(false);
+	const [showAdvancedSettings, setShowAdvancedSettings] = React.useState(false);
+	const [mydata, setMydata] = useStorage();
+	const [editDeviceID, setEditDeviceID] = useEditDeviceID();
 
-    const toggleAdvancedSettings = () => {
-        toggle((current) => !current);
-    };
-
-    return (EditDeviceView({show: show, toggle: toggleAdvancedSettings})
-    )
+	function editDevice(remove, id, displayname, mac, port, secureon) {
+		if (remove) {
+			const oldData = { ...mydata };
+			delete oldData[id];
+			return setMydata(oldData);
+		}
+		return setMydata({ ...mydata, [id]: { displayname, mac, port, secureon } });
+	}
+	mydata;
+	return EditDeviceView({
+		mydata,
+		editDeviceID,
+		setEditDeviceID,
+		showAdvancedSettings,
+		setShowAdvancedSettings,
+		editDevice,
+	});
 }
