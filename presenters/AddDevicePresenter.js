@@ -15,7 +15,7 @@ export default function AddDevicePresenter(props) {
 
 	function createDevice(displayname, mac, port, secureon) {
 		id = uuid.v4();
-		setMydata([...mydata, { id, displayname, mac, port, secureon }]);
+		setMydata({ ...mydata, [id]: { displayname, mac, port, secureon } });
 	}
 
 	return AddDeviceView({

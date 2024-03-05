@@ -15,36 +15,32 @@ import uuid from "react-native-uuid";
 const dataStruct = {
 	Example: { defaultValue: [], callbacks: {} },
 	Data: {
-		defaultValue: [
-			{
-				id: "512512",
+		defaultValue: {
+			"11edc52b-2918-4d71-9058-f7285e29d894": {
 				displayname: "Test 1",
 				mac: "11:22:33:ff:ee",
 				port: "21",
 				secureon: "11:22:33:ff:ee",
 			},
-			{
-				id: "512513",
+			"11edc52b-2918-4d71-9058-f7285e29d895": {
 				displayname: "Test 2",
 				mac: "11:22:33:ff:ee",
 				port: "21",
 				secureon: "11:22:33:ff:ee",
 			},
-			{
-				id: "512514",
+			"11edc52b-2918-4d71-9058-f7285e29d896": {
 				displayname: "Test 3",
 				mac: "11:22:33:ff:ee",
 				port: "21",
 				secureon: "11:22:33:ff:ee",
 			},
-			{
-				id: "512515",
+			"11edc52b-2918-4d71-9058-f7285e29d897": {
 				displayname: "Test 4",
 				mac: "11:22:33:ff:ee",
 				port: "21",
 				secureon: "11:22:33:ff:ee",
 			},
-		],
+		},
 		callbacks: {},
 	},
 };
@@ -108,6 +104,7 @@ async function fromLocalStorage(target) {
 
 //Write new value to localstorage
 function toLocalStorage(target, value) {
+	console.log("Adding", value, "to key", target);
 	return AsyncStorage.setItem(target, JSON.stringify(value));
 }
 //-------- Internal funcs --------

@@ -17,7 +17,9 @@ export default function HomeView({ devices, navigation }) {
 		<>
 			<ScrollView className=" w-full h-full flex flex-col gap-4 gap-x-0 overflow-visible">
 				{devices ? (
-					devices.map((element) => CustomCard(element, navigation))
+					Object.keys(devices).map((key) =>
+						CustomCard(key, devices[key], navigation)
+					)
 				) : (
 					<View />
 				)}
@@ -35,15 +37,14 @@ export default function HomeView({ devices, navigation }) {
 	);
 }
 
-function CustomCard(data, navigation) {
+function CustomCard(uniqueKey, data, navigation) {
 	return (
 		<Surface
 			elevation={2}
-			key={data.id}
+			key={uniqueKey}
 			className="rounded-lg top-2 left-2 mr-4"
 		>
 			<LinearGradient
-				key={data.id}
 				className="rounded-lg h-28 flex-column justify-between p-3 pb-0"
 				colors={["#b3e3fc", "#e8f4fa"]}
 			>
