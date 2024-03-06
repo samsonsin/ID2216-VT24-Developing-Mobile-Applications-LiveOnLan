@@ -9,32 +9,37 @@ import {
 	Surface,
 	Button,
 	Drawer,
+	useTheme,
 } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
-
+import AddDevicePresenter from "../presenters/AddDevicePresenter";
+import EditDevicePresenter from "../presenters/EditDevicePresenter";
 export default function HomeView({
 	devices,
 	navigation,
 	setEditDeviceID,
 	sendWoLPacket,
 }) {
+	const theme = useTheme();
 	return (
 		<>
 			<ScrollView className=" w-full h-full flex flex-col gap-4 gap-x-0 overflow-visible">
 				{devices ? (
 					Object.keys(devices).map((key) =>
-						CustomCard(key, devices[key], setEditDeviceID, sendWoLPacket)
+						CustomCard(key, devices[key], setEditDeviceID, sendWoLPacket, theme)
 					)
 				) : (
 					<View />
 				)}
 				<View className="h-10" />
 			</ScrollView>
+			<AddDevicePresenter />
+			<EditDevicePresenter />
 		</>
 	);
 }
 
-function CustomCard(uniqueKey, data, setEditDeviceID, sendWoLPacket) {
+function CustomCard(uniqueKey, data, setEditDeviceID, sendWoLPacket, theme) {
 	return (
 		<Surface
 			elevation={2}
@@ -43,7 +48,7 @@ function CustomCard(uniqueKey, data, setEditDeviceID, sendWoLPacket) {
 		>
 			<LinearGradient
 				className="rounded-lg h-28 flex-column justify-between p-3 pb-0"
-				colors={["#b3e3fc", "#e8f4fa"]}
+				colors={[theme.colors.primaryContainer, theme.colors.surface]}
 			>
 				<View className="flex flex-row justify-between items-center">
 					<View className="w-10"></View>

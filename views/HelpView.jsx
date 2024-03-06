@@ -1,26 +1,80 @@
 import * as React from "react";
-import { Text, View } from "react-native";
-import { TextInput } from "react-native-paper";
+import { View, Linking, ScrollView } from "react-native";
+import { TextInput, Surface, Text, useTheme } from "react-native-paper";
 
 export default function HelpView(pwops) {
+	const theme = useTheme();
 	return (
-		<View className="bg-[#b3e3fc] py-6 h-full">
-			<View>
-				<View className=" flex-col m-6">
-					<Text className="text-lg text-center h-10 ">
-						Information about Live on Lan
+		<>
+			<ScrollView className="rounded-md">
+				<Surface
+					elevation={2}
+					className="p-5 m-5 mb-0 overflow-visible rounded-md"
+				>
+					<Text variant="headlineMedium" className="self-center">
+						Contact
 					</Text>
-					<TextInput
-						className="place-content-center"
-						multiline={true}
-						editable={false}
-						mode="outlined"
-						value={
-							"Live on Lan uses both a device’s inherent Wake-On-Lan capabilities coupled with a custom service running on the target device to offer both wake up and shut down functionality. \n\nWake-On-Lan functionality has to be enabled in the BIOS of the device. \n\nShutdown functionality requires a app to be installed on the target devices. This app can be downloaded at \nhttps://liveonlan.com/downloads \n\nExport / Import functionality allows for saving and restoring app settings."
-						}
-					/>
-				</View>
-			</View>
-		</View>
+					<Text>
+						If you're having issues with the app, have got some feedback or
+						otherwise would like to contact the Developer of this application;
+						then please contact us via this email address:
+						<Text
+							style={{ color: "blue" }}
+							onPress={() => Linking.openURL("mailto:emblad@kth.se")}
+						>
+							emblad@kth.se
+						</Text>
+					</Text>
+				</Surface>
+				<Surface
+					elevation={2}
+					className="p-5 m-5 mb-0 overflow-visible rounded-md"
+				>
+					<Text variant="headlineMedium" className="self-center">
+						How does WoL work?
+					</Text>
+					<Text>
+						Wake-on-Lan is a technology integrated in virtually all internet
+						enabled devices. While available on all ethernet connected devices,
+						even some modern WiFi enabled devices boast support for WoL.
+					</Text>
+					<Text>
+						When a device wants to use Wake-on-Lan, it constructs a specific UDP
+						Datagram packet which is sent to either a destination IP address or
+						broadcast accross the local LAN. A recieving device, when shutdown,
+						will still investigate all arriving packets, and if a correctly
+						encoded WoL packet arrives, the networkdevice will power on the
+						device.
+					</Text>
+				</Surface>
+				<Surface elevation={2} className="p-5 m-5 overflow-visible rounded-md">
+					<Text variant="headlineMedium" className="self-center">
+						How do i enable WoL?
+					</Text>
+					<Text>
+						Wake-on-Lan needs to be enabled at the BIOS level of a given device.
+						Usually, this particular option is found under for example "onboard
+						devices" or "PCIe devices" or a similar location. Alternatively,
+						some devices either allow or need WoL to be enabled though drivers.
+						Then, these settings can be accessed through the properties window
+						of the given device within your operating system.
+					</Text>
+					<Text>
+						Detailed information can be easily found for your given device and /
+						or operating system online:
+						<Text
+							style={{ color: "blue" }}
+							onPress={() =>
+								Linking.openURL(
+									"https://www.google.com/search?q=how+to+turn+on+Wake-on-Lan"
+								)
+							}
+						>
+							How to turn on Wake-on-Lan
+						</Text>
+					</Text>
+				</Surface>
+			</ScrollView>
+		</>
 	);
 }
