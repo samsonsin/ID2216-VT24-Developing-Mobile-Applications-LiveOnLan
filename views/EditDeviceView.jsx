@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import {
-	StyleSheet,
-	View,
-	SafeAreaView,
-	TouchableOpacity,
-	ScrollView,
-} from "react-native";
+import { View, ScrollView } from "react-native";
 //import  from "react-native-paper";
-import { Text, TextInput, Surface, Button, Modal } from "react-native-paper";
-import { LinearGradient } from "expo-linear-gradient";
+import {
+	TextInput,
+	Surface,
+	Button,
+	Modal,
+	IconButton,
+	useTheme,
+} from "react-native-paper";
 
 export default function EditDeviceView({
 	mydata,
@@ -23,6 +23,7 @@ export default function EditDeviceView({
 	const [mac, setMac] = useState("");
 	const [port, setPort] = useState("");
 	const [secureon, setSecureon] = useState("");
+	const theme = useTheme();
 
 	useEffect(() => {
 		if (mydata && editDeviceID) {
@@ -65,7 +66,7 @@ export default function EditDeviceView({
 							className="w-auto"
 							onPress={() => setShowAdvancedSettings(!showAdvancedSettings)}
 						>
-							Show Advanved Settings
+							Show Advanced Settings
 						</Button>
 						{showAdvancedSettings ? (
 							<>
@@ -85,25 +86,39 @@ export default function EditDeviceView({
 						) : (
 							<View className="hidden" />
 						)}
-						<Button
-							icon="plus"
-							mode="elevated"
-							className=""
-							onPress={() => {
-								editDevice(
-									false,
-									editDeviceID,
-									displayName,
-									address,
-									mac,
-									port,
-									secureon
-								);
-								setEditDeviceID(null);
-							}}
-						>
-							Save Changes
-						</Button>
+
+						<View className="flex flex-row justify-between items-center">
+							<IconButton
+								icon="delete"
+								mode="contained"
+								iconColor={theme.colors.error}
+								onPress={() => {
+									setEditDeviceID(null);
+									editDevice(true, editDeviceID);
+								}}
+							>
+								Delete Device
+							</IconButton>
+							<Button
+								icon="plus"
+								mode="elevated"
+								className="grow"
+								onPress={() => {
+									editDevice(
+										false,
+										editDeviceID,
+										displayName,
+										address,
+										mac,
+										port,
+										secureon
+									);
+									setEditDeviceID(null);
+								}}
+							>
+								Save Changes
+							</Button>
+						</View>
 					</Surface>
 				</ScrollView>
 			</Modal>

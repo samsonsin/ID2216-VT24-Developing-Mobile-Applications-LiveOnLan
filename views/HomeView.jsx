@@ -60,16 +60,20 @@ function CustomCard(uniqueKey, data, setEditDeviceID, sendWoLPacket) {
 						className="opacity-80 w-1/3"
 						icon="power"
 						mode="contained"
-						onPress={() =>
-							sendWoLPacket(data.address, data.mac, data.port, data.secureon)
-						}
+						onPress={() => {
+							console.log("Sending packets are currently disabled...");
+							// sendWoLPacket(data.address, data.mac, data.port, data.secureon)
+						}}
 					></IconButton>
 					<IconButton
 						className="opacity-80 w-1/3"
 						icon="power-off"
 						mode="contained"
 						iconColor="red"
-						onPress={() => console.log("Pressed")}
+						onPress={() => {
+							console.log("Sending packets are currently disabled...");
+							// sendWoLPacket(data.address, data.mac, data.port, data.secureon)
+						}}
 					></IconButton>
 				</View>
 			</LinearGradient>

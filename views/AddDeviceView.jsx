@@ -1,14 +1,7 @@
 import * as React from "react";
-import {
-	StyleSheet,
-	View,
-	SafeAreaView,
-	TouchableOpacity,
-	ScrollView,
-} from "react-native";
+import { View, ScrollView } from "react-native";
 //import  from "react-native-paper";
-import { Text, TextInput, Surface, Button, Modal } from "react-native-paper";
-import { LinearGradient } from "expo-linear-gradient";
+import { TextInput, Surface, Button, Modal } from "react-native-paper";
 
 export default function AddDeviceView({
 	modalVisibility,
@@ -56,7 +49,7 @@ export default function AddDeviceView({
 							className="w-auto"
 							onPress={() => setShowAdvancedSettings(!showAdvancedSettings)}
 						>
-							Show Advanved Settings
+							Show Advanced Settings
 						</Button>
 						{showAdvancedSettings ? (
 							<>
