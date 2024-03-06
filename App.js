@@ -9,8 +9,7 @@ import {
 import { initModel } from "./model";
 import AddDevicePresenter from "./presenters/AddDevicePresenter";
 import EditDevicePresenter from "./presenters/EditDevicePresenter";
-import HelpScreenPresenter from "./presenters/HelpScreenPresenter";
-import FeedbackPresenter from "./presenters/FeedbackPresenter";
+import HelpPresenter from "./presenters/HelpPresenter";
 import HomePresenter from "./presenters/HomePresenter";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
@@ -41,8 +40,7 @@ function App() {
 		<NavigationContainer>
 			<Drawer.Navigator initialRouteName="Home">
 				<Drawer.Screen name="Home" component={HomePresenter} />
-				<Drawer.Screen name="Feedback" component={FeedbackPresenter} />
-				<Drawer.Screen name="Help" component={HelpScreenPresenter} />
+				<Drawer.Screen name="Help" component={HelpPresenter} />
 				<Drawer.Screen name="Settings" component={SettingsPresenter} />
 			</Drawer.Navigator>
 			<AddDevicePresenter />

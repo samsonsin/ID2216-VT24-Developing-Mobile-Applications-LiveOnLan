@@ -2,7 +2,7 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import { TextInput } from "react-native-paper";
 
-export default function HelpScreenView(pwops) {
+export default function HelpView(pwops) {
 	return (
 		<View className="bg-[#b3e3fc] py-6 h-full">
 			<View>
