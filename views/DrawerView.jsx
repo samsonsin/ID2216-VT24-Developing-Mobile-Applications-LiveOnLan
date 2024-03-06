@@ -1,6 +1,5 @@
-import * as React from "react";
 import { Drawer } from "react-native-paper";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 
 export default function DrawerView({ active, setActive }) {
 	return active ? (

@@ -15,6 +15,7 @@ import uuid from "react-native-uuid";
 const dataStruct = {
 	Example: { defaultValue: [], callbacks: {} },
 	editDeviceID: { defaultValue: null, callbacks: {} },
+	themeType: { defaultValue: "system", callbacks: {} },
 	Data: {
 		defaultValue: {
 			"11edc52b-2918-4d71-9058-f7285e29d894": {
@@ -67,6 +68,10 @@ export function useEditDeviceID() {
 	return useCustomHook("editDeviceID");
 }
 
+export function useThemeType() {
+	return useCustomHook("themeType");
+}
+
 //-------- Public Functions --------
 
 async function wipeStorage() {
@@ -88,7 +93,7 @@ export function initModel() {
 	Object.keys(dataStruct).map((e) => {
 		fromLocalStorage(e).then((result) => {
 			if (result === null) {
-				toLocalStorage(e, dataStruct[e].defaultValue);
+				toLocalStorage(e, dataStruct[e].defaultValue).then(() => callStruct(e));
 			}
 		});
 	});
@@ -131,22 +136,18 @@ function subscribeTo(target, callback) {
 
 // Sets a new value for target and calls its callbacks
 function setValue(target, value) {
-	toLocalStorage(target, value).then(() => callStruct(target));
+	return toLocalStorage(target, value).then(() => callStruct(target));
 }
 
 //calls the callbacks of some target.
 function callStruct(target) {
 	//check if object is empty first.
-	Object.keys(dataStruct[target].callbacks).length == 0
-		? console.error(
-				`Model Value: ${target}: No callbacks; Use the Custom Hooks`
-		  )
-		: //If there are some callbacks, call them all
-		  Object.values(dataStruct[target].callbacks).forEach((e) =>
-				fromLocalStorage(target).then((result) => {
-					e(result);
-				})
-		  );
+	if (Object.keys(dataStruct[target].callbacks).length == 0) return;
+	Object.values(dataStruct[target].callbacks).forEach((e) =>
+		fromLocalStorage(target).then((result) => {
+			e(result);
+		})
+	);
 }
 
 //Creates a useState hook that subscribes to model 'target' and updates model & any other states on the same target if changed

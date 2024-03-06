@@ -1,7 +1,13 @@
-import * as React from "react";
+import { useState } from "react";
 import { View, ScrollView } from "react-native";
 //import  from "react-native-paper";
-import { TextInput, Surface, Button, Modal } from "react-native-paper";
+import {
+	TextInput,
+	Surface,
+	Button,
+	Modal,
+	ActivityIndicator,
+} from "react-native-paper";
 
 export default function AddDeviceView({
 	modalVisibility,
@@ -10,11 +16,11 @@ export default function AddDeviceView({
 	setShowAdvancedSettings,
 	createDevice,
 }) {
-	const [displayName, setDisplayname] = React.useState("");
-	const [address, setAddress] = React.useState("192.168.1.255");
-	const [mac, setMac] = React.useState("");
-	const [port, setPort] = React.useState("9");
-	const [secureon, setSecureon] = React.useState("");
+	const [displayName, setDisplayname] = useState("");
+	const [address, setAddress] = useState("192.168.1.255");
+	const [mac, setMac] = useState("");
+	const [port, setPort] = useState("9");
+	const [secureon, setSecureon] = useState("");
 	return (
 		<>
 			<Modal
@@ -84,7 +90,7 @@ export default function AddDeviceView({
 				</ScrollView>
 			</Modal>
 			{modalVisibility ? (
-				<View />
+				<ActivityIndicator animating={true} />
 			) : (
 				<Button
 					icon="plus"

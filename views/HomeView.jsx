@@ -1,25 +1,16 @@
 import * as React from "react";
-import { View, ImageBackground, Image, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import {
-	Appbar,
 	Text,
-	Avatar,
 	IconButton,
-	Card,
 	Surface,
-	Button,
-	Drawer,
 	useTheme,
+	ActivityIndicator,
 } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import AddDevicePresenter from "../presenters/AddDevicePresenter";
 import EditDevicePresenter from "../presenters/EditDevicePresenter";
-export default function HomeView({
-	devices,
-	navigation,
-	setEditDeviceID,
-	sendWoLPacket,
-}) {
+export default function HomeView({ devices, setEditDeviceID, sendWoLPacket }) {
 	const theme = useTheme();
 	return (
 		<>
@@ -29,7 +20,7 @@ export default function HomeView({
 						CustomCard(key, devices[key], setEditDeviceID, sendWoLPacket, theme)
 					)
 				) : (
-					<View />
+					<ActivityIndicator animating={true} />
 				)}
 				<View className="h-10" />
 			</ScrollView>

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { View, Linking, ScrollView } from "react-native";
-import { TextInput, Surface, Text, useTheme } from "react-native-paper";
+import { Linking, ScrollView } from "react-native";
+import { Surface, Text, useTheme } from "react-native-paper";
 
 export default function HelpView(pwops) {
 	const theme = useTheme();

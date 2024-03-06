@@ -1,9 +1,6 @@
 import * as React from "react";
-import { View, Text } from "react-native";
 import EditDeviceView from "../views/EditDeviceView";
 import { useStorage, useEditDeviceID } from "../model";
-import uuid from "react-native-uuid";
-import { useState } from "react";
 
 export default function EditDevicePresenter(props) {
 	const [showAdvancedSettings, setShowAdvancedSettings] = React.useState(false);

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { View, Text } from "react-native";
 import AddDeviceView from "../views/AddDeviceView";
 import { useStorage } from "../model";
 import uuid from "react-native-uuid";
