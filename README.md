@@ -1,9 +1,9 @@
 To test the app, download the Expo Go client on your mobile device and enter this URL:
 
 
-Android: exp://u.expo.dev/update/16ccf52f-7135-4e3f-a14e-e896ded514a2
+Android: exp://u.expo.dev/update/e6af924a-d5cd-439e-95fd-0cbef014c6e8
 
-iOS: exp://u.expo.dev/update/4f6024e9-0a30-4def-9272-725602a30f16
+iOS: exp://u.expo.dev/update/02ac9fc8-d751-4111-98bf-922cab12564c
 
 
 If you want to run the code manually (or the above doesnt work): C
