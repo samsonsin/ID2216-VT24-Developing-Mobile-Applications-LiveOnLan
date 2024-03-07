@@ -1,14 +1,15 @@
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
 	Text,
 	Surface,
 	SegmentedButtons,
 	Button,
 	Divider,
+	Switch,
 } from "react-native-paper";
 import { initModel, useThemeType } from "../model";
 
-export default function SettingsView({ setStorage }) {
+export default function SettingsView({ setStorage, packet, setPacket }) {
 	const [value, setValue] = useThemeType();
 
 	return (
@@ -45,6 +46,16 @@ export default function SettingsView({ setStorage }) {
 					>
 						Reset Devices
 					</Button>
+					<View className="flex flex-row justify-between">
+						<Text className="w-20">
+							Enable sending WoL Packets? May cause crashes!
+						</Text>
+						<Switch
+							className="w-20 "
+							value={packet}
+							onValueChange={() => setPacket(!packet)}
+						/>
+					</View>
 				</Surface>
 			</ScrollView>
 		</>

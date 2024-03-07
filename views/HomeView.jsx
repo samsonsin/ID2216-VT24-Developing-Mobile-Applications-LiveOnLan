@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import { View, ScrollView } from "react-native";
 import {
 	Text,
@@ -6,18 +6,33 @@ import {
 	Surface,
 	useTheme,
 	ActivityIndicator,
+	Snackbar,
 } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
 import AddDevicePresenter from "../presenters/AddDevicePresenter";
 import EditDevicePresenter from "../presenters/EditDevicePresenter";
-export default function HomeView({ devices, setEditDeviceID, sendWoLPacket }) {
+export default function HomeView({
+	devices,
+	setEditDeviceID,
+	sendWoLPacket,
+	packet,
+}) {
 	const theme = useTheme();
+	const [snackVisible, setSnackVisible] = useState(false);
 	return (
 		<>
 			<ScrollView className=" w-full h-full flex flex-col gap-4 gap-x-0 overflow-visible">
 				{devices ? (
 					Object.keys(devices).map((key) =>
-						CustomCard(key, devices[key], setEditDeviceID, sendWoLPacket, theme)
+						CustomCard(
+							key,
+							devices[key],
+							setEditDeviceID,
+							sendWoLPacket,
+							theme,
+							packet,
+							setSnackVisible
+						)
 					)
 				) : (
 					<ActivityIndicator animating={true} />
@@ -26,11 +41,27 @@ export default function HomeView({ devices, setEditDeviceID, sendWoLPacket }) {
 			</ScrollView>
 			<AddDevicePresenter />
 			<EditDevicePresenter />
+			<Snackbar
+				visible={snackVisible}
+				onDismiss={() => setSnackVisible(false)}
+				duration={2000}
+			>
+				{(packet && "Sent a WoL Packet!") ||
+					"Packet Sending Disabled! Check Settings!"}
+			</Snackbar>
 		</>
 	);
 }
 
-function CustomCard(uniqueKey, data, setEditDeviceID, sendWoLPacket, theme) {
+function CustomCard(
+	uniqueKey,
+	data,
+	setEditDeviceID,
+	sendWoLPacket,
+	theme,
+	packet,
+	setSnackVisible
+) {
 	return (
 		<Surface
 			elevation={2}
@@ -57,8 +88,9 @@ function CustomCard(uniqueKey, data, setEditDeviceID, sendWoLPacket, theme) {
 						icon="power"
 						mode="contained"
 						onPress={() => {
-							console.log("Sending packets are currently disabled...");
-							// sendWoLPacket(data.address, data.mac, data.port, data.secureon)
+							if (packet)
+								sendWoLPacket(data.address, data.mac, data.port, data.secureon);
+							setSnackVisible(true);
 						}}
 					></IconButton>
 					<IconButton
@@ -67,8 +99,9 @@ function CustomCard(uniqueKey, data, setEditDeviceID, sendWoLPacket, theme) {
 						mode="contained"
 						iconColor="red"
 						onPress={() => {
-							console.log("Sending packets are currently disabled...");
-							// sendWoLPacket(data.address, data.mac, data.port, data.secureon)
+							if (packet)
+								sendWoLPacket(data.address, data.mac, data.port, data.secureon);
+							setSnackVisible(true);
 						}}
 					></IconButton>
 				</View>

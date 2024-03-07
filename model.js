@@ -16,6 +16,7 @@ const dataStruct = {
 	Example: { defaultValue: [], callbacks: {} },
 	editDeviceID: { defaultValue: null, callbacks: {} },
 	themeType: { defaultValue: "system", callbacks: {} },
+	packet: { defaultValue: false, callbacks: {} },
 	Data: {
 		defaultValue: {
 			"11edc52b-2918-4d71-9058-f7285e29d894": {
@@ -70,6 +71,10 @@ export function useEditDeviceID() {
 
 export function useThemeType() {
 	return useCustomHook("themeType");
+}
+
+export function usePacket() {
+	return useCustomHook("packet");
 }
 
 //-------- Public Functions --------

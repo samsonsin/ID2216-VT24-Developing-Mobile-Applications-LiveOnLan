@@ -1,12 +1,8 @@
 import "react-native-gesture-handler";
 import { useEffect, useLayoutEffect } from "react";
-import { AppRegistry, Appearance, View } from "react-native";
+import { AppRegistry, Appearance, View, useColorScheme } from "react-native";
 import { name as appName } from "./app.json";
-import {
-	MD3LightTheme as DefaultThemePaper,
-	PaperProvider,
-	ActivityIndicator,
-} from "react-native-paper";
+import { PaperProvider, ActivityIndicator } from "react-native-paper";
 import { initModel, useThemeType } from "./model";
 import HelpPresenter from "./presenters/HelpPresenter";
 import HomePresenter from "./presenters/HomePresenter";
@@ -31,8 +27,13 @@ export default function App() {
 		initModel();
 	}, []);
 	const [themeType, setThemeType] = useThemeType();
-	const colorScheme = Appearance.getColorScheme();
-	var typeUsed = themeType == "system" ? colorScheme : themeType;
+	const colorScheme = useColorScheme();
+	var typeUsed =
+		themeType == "system"
+			? colorScheme === null
+				? "light"
+				: colorScheme
+			: themeType;
 	const theme =
 		typeUsed == "light"
 			? {

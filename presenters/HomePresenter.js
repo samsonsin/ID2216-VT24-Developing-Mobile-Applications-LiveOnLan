@@ -1,6 +1,6 @@
 import dgram from "react-native-udp";
 import HomeView from "../views/HomeView";
-import { useStorage, useEditDeviceID } from "../model";
+import { useStorage, useEditDeviceID, usePacket } from "../model";
 
 function hexToBytes(hex) {
 	let bytes = [];
@@ -28,6 +28,7 @@ function sendWoLPacket(adress, mac, port, secureon) {
 	});
 }
 export default function HomePresenter(props) {
+	const [packet, setPacket] = usePacket();
 	const [editDeviceID, setEditDeviceID] = useEditDeviceID();
 	const [data, setData] = useStorage();
 	return HomeView({
@@ -35,5 +36,6 @@ export default function HomePresenter(props) {
 		navigation: props.navigation,
 		setEditDeviceID,
 		sendWoLPacket,
+		packet,
 	});
 }
