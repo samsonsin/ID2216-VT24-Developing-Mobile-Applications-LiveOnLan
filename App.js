@@ -1,6 +1,12 @@
 import "react-native-gesture-handler";
 import { useEffect, useLayoutEffect } from "react";
-import { AppRegistry, Appearance, View, useColorScheme } from "react-native";
+import {
+	AppRegistry,
+	Appearance,
+	View,
+	useColorScheme,
+	StatusBar,
+} from "react-native";
 import { name as appName } from "./app.json";
 import { PaperProvider, ActivityIndicator } from "react-native-paper";
 import { initModel, useThemeType } from "./model";
@@ -28,6 +34,14 @@ export default function App() {
 	}, []);
 	const [themeType, setThemeType] = useThemeType();
 	const colorScheme = useColorScheme();
+
+	useEffect(() => {
+		StatusBar.setBarStyle(
+			typeUsed == "light" ? "light-content" : "dark-content",
+			true
+		);
+	}, [typeUsed]);
+
 	var typeUsed =
 		themeType == "system"
 			? colorScheme === null
@@ -130,7 +144,12 @@ export default function App() {
 			<NavigationContainer
 				theme={typeUsed == "light" ? DefaultTheme : DarkTheme}
 			>
-				<Drawer.Navigator initialRouteName="Home">
+				<Drawer.Navigator
+					initialRouteName="Home"
+					screenOptions={{
+						headerTintColor: theme.colors.primary,
+					}}
+				>
 					<Drawer.Screen name="Home" component={HomePresenter} />
 					<Drawer.Screen name="Help" component={HelpPresenter} />
 					<Drawer.Screen name="Settings" component={SettingsPresenter} />
