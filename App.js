@@ -1,12 +1,6 @@
 import "react-native-gesture-handler";
-import { useEffect, useLayoutEffect } from "react";
-import {
-	AppRegistry,
-	Appearance,
-	View,
-	useColorScheme,
-	StatusBar,
-} from "react-native";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { AppRegistry, Appearance, View, useColorScheme } from "react-native";
 import { name as appName } from "./app.json";
 import { PaperProvider, ActivityIndicator } from "react-native-paper";
 import { initModel, useThemeType } from "./model";
@@ -20,6 +14,7 @@ import {
 } from "@react-navigation/native";
 import SettingsPresenter from "./presenters/SettingsPresenter";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
 
 import { NativeWindStyleSheet } from "nativewind";
 
@@ -36,11 +31,10 @@ export default function App() {
 	const colorScheme = useColorScheme();
 
 	useEffect(() => {
-		StatusBar.setBarStyle(
-			typeUsed == "light" ? "light-content" : "dark-content",
-			true
-		);
+		setStatusBarStyle(statusBarStyle);
 	}, [typeUsed]);
+
+	const [statusBarStyle, setStatusBarStyle] = useState(colorScheme);
 
 	var typeUsed =
 		themeType == "system"
@@ -155,6 +149,7 @@ export default function App() {
 					<Drawer.Screen name="Settings" component={SettingsPresenter} />
 				</Drawer.Navigator>
 			</NavigationContainer>
+			<StatusBar style={statusBarStyle} />
 		</PaperProvider>
 	) : (
 		<ActivityIndicator animating={true} />
