@@ -1,42 +1,41 @@
 {
-  "expo": {
-    "name": "ID2216-VT24-Developing-Mobile-Applications-LiveOnLan",
-    "slug": "ID2216-VT24-Developing-Mobile-Applications-LiveOnLan",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.samsonsin.ID2216VT24DevelopingMobileApplicationsLiveOnLan"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "777c0d03-d6ea-4dae-bd56-cead0adf96e9"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/777c0d03-d6ea-4dae-bd56-cead0adf96e9"
-    }
-  }
+	"expo": {
+		"name": "ID2216-VT24-Developing-Mobile-Applications-LiveOnLan",
+		"slug": "ID2216-VT24-Developing-Mobile-Applications-LiveOnLan",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "light",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.samsonsin.ID2216VT24DevelopingMobileApplicationsLiveOnLan"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "777c0d03-d6ea-4dae-bd56-cead0adf96e9"
+			}
+		},
+		"runtimeVersion": {
+			"policy": "appVersion"
+		},
+		"updates": {
+			"url": "https://u.expo.dev/777c0d03-d6ea-4dae-bd56-cead0adf96e9"
+		},
+		"owner": "samsonsin"
+	}
 }
