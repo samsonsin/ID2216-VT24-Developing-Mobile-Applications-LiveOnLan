@@ -33,7 +33,7 @@ function sendWoLPacket(adress, mac, port, secureon) {
 	});
 
 	a.once("listening", function () {
-		a.send(packet, 0, packet.length, port, adress, function (err) {
+		a.send(packet, undefined, undefined, port, adress, function (err) {
 			if (err) throw err;
 		});
 	});
