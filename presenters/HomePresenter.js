@@ -20,11 +20,18 @@ function sendWoLPacket(adress, mac, port, secureon) {
 		packet.push(...secureonInt);
 	}
 	console.log("test", packet);
+	console.log("func call", packet, 0, packet.length, port, adress);
 
-	const socket = dgram.createSocket("udp4");
-	socket.bind(port);
-	socket.once("listening", function () {
-		socket.send(packet, undefined, undefined, port, adress);
+	let a = dgram.createSocket("udp4");
+	let aPort = randomPort();
+	a.bind(aPort, function (err) {
+		if (err) throw err;
+	});
+
+	a.once("listening", function () {
+		a.send(packet, 0, packet.length, port, adress, function (err) {
+			if (err) throw err;
+		});
 	});
 }
 export default function HomePresenter(props) {
