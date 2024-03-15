@@ -131,3 +131,4 @@ dist
 
 #expo settings
 .expo
+android/*
